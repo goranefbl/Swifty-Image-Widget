@@ -1,0 +1,38 @@
+/* This stylesheet is used to style the public view of the widget. */
+ul.swifty_adswidget_ul li {
+	list-style:none;
+	padding: 0;
+	margin-bottom: 15px;
+}
+ul.swifty_adswidget_ul li img{
+	display: block;
+	margin: auto;
+}
+ul.swifty_adswidget_ul.small li,ul.swifty_adswidget_ul.custom li {
+	display: inline-block;
+	margin-right: 5px;
+}
+ul.swifty_adswidget_ul.small li img {
+	width: 125px;
+	height: 125px;
+}
+ul.swifty_adswidget_ul.square li img {
+	width: 250px;
+	height: 250px;
+}
+ul.swifty_adswidget_ul.square2 li img {
+	width: 300px;
+	height: 250px;
+}
+ul.swifty_adswidget_ul.full li img {
+	width: 468px;
+	height: 60px;
+}
+ul.swifty_adswidget_ul.leaderboard li img {
+	width: 728px;
+	height: 90px;
+}
+ul.swifty_adswidget_ul.skyscraper li img {
+	width: 120px;
+	height: 600px;
+}
