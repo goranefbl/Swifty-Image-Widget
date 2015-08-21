@@ -81,6 +81,7 @@ $get_intermediate_image_sizes = get_intermediate_image_sizes();
 				<textarea rows="6" class="widefat" name="<?php echo $this->get_field_name( 'img_caption' ); ?>[]"><?php echo format_to_edit($img['caption']); ?></textarea>
 			</p>
 			<input type="hidden" class="imgIdInput" name="<?php echo $this->get_field_name( 'img_id' ); ?>[]" value="<?php echo $img['img']; ?>">
+			<a href="#" class="swifty_edit_img button"><?php _e('Edit this image', 'swifty-img-widget'); ?></a>
 			<a href="#" class="swifty_remove_img button"><?php _e('Remove this image', 'swifty-img-widget'); ?></a>
 			<hr style="margin:20px 0;">
 		</li>

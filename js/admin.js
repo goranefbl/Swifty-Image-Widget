@@ -26,7 +26,8 @@
 
 		var frame,
 			imgContainer,
-			imgIdInput;
+			imgIdInput,
+			attachment;
 
 		//Image Frame
 		$("body").on("click",".swifty_img_holder .swifty_add_image", function(e) {
@@ -49,7 +50,7 @@
 		        text: 'Use This One'
 		      },
 		      library : { type : 'image' },
-		      multiple: false  // Set to true to allow multiple files to be selected
+		      multiple: false
 		    });
 
 		    frame.open();
@@ -65,10 +66,59 @@
 
 		      // Send the attachment id to our hidden input
 		      imgIdInput.val( attachment.id );
-
+		      
 		      // Remove image button
 		      $this.remove();
+
 		    });
+
+		});
+
+		//Edit image handler
+		$("body").on("click",".swifty_img_holder .swifty_edit_img", function(e) {
+			
+			var $this = $(this);
+			imgContainer = $this.parent().find(".imgContainer");
+			imgIdInput = $this.parent().find('.imgIdInput');
+			e.preventDefault();
+			
+		    // Create a new media frame
+			    frame = wp.media({
+			    title: 'Select Image',
+			    button: {
+			    	text: 'Use This One'
+			    },
+			    library : { type : 'image' },
+			    multiple: false
+		    });
+
+		    // When an image is selected in the media frame...
+			   frame.on( 'select', function() {
+		        
+		        // Get media attachment details from the frame state
+		        var attachment = frame.state().get('selection').first().toJSON();
+
+		        // Send the attachment URL to our custom image input field.
+		        imgContainer.html( '<img src="'+attachment.url+'" alt="" style="max-width:100%;"/>' );
+
+		        // Send the attachment id to our hidden input
+		        imgIdInput.val( attachment.id );
+
+		    });
+
+		    // When an image is selected in the media frame...
+		    frame.on( 'open', function() {
+		      	var selection = frame.state().get('selection');
+				
+				//Get current image
+				var attachment = wp.media.attachment(imgIdInput.val());
+				attachment.fetch();
+				
+				//Preselect in media frame
+				selection.add( attachment ? [ attachment ] : [] );
+		    });
+
+		    frame.open();
 
 		});
 	});
