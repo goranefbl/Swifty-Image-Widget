@@ -21,7 +21,7 @@ $get_intermediate_image_sizes = get_intermediate_image_sizes();
 <ul class="swifty_imgs_clone" style="display:none">
 	<li style="margin-bottom:0;">
 		<div class="imgContainer" style="text-align:center;border: 1px dashed #ddd;padding:15px;"></div>
-		<a href="#" class="button swifty_add_image" style="width:100%;margin:15px 0;"><?php _e('Add Image','swifty-img-widget'); ?></a></br>
+		</br>
 		<p>
 			<label><?php _e('Image Link(Optional)', 'swifty-img-widget'); ?>:</label>
 			<input type="text" name="<?php echo $this->get_field_name( 'img_link' ); ?>[]" class="widefat" />
@@ -31,6 +31,7 @@ $get_intermediate_image_sizes = get_intermediate_image_sizes();
 			<textarea rows="6" class="widefat" name="<?php echo $this->get_field_name( 'img_caption' ); ?>[]"></textarea>
 		</p>
 		<input type="hidden" class="imgIdInput" name="<?php echo $this->get_field_name( 'img_id' ); ?>[]" value="">
+		<a href="#" class="button swifty_add_image"><?php _e('Add Image','swifty-img-widget'); ?></a>
 		<a href="#" class="swifty_remove_img button"><?php _e('Remove this image', 'swifty-img-widget'); ?></a>
 		<hr style="margin:20px 0;">
 	</li>
@@ -81,6 +82,7 @@ $get_intermediate_image_sizes = get_intermediate_image_sizes();
 				<textarea rows="6" class="widefat" name="<?php echo $this->get_field_name( 'img_caption' ); ?>[]"><?php echo format_to_edit($img['caption']); ?></textarea>
 			</p>
 			<input type="hidden" class="imgIdInput" name="<?php echo $this->get_field_name( 'img_id' ); ?>[]" value="<?php echo $img['img']; ?>">
+			<a href="#" class="button swifty_add_image"><?php _e('Edit Image','swifty-img-widget'); ?></a>
 			<a href="#" class="swifty_remove_img button"><?php _e('Remove this image', 'swifty-img-widget'); ?></a>
 			<hr style="margin:20px 0;">
 		</li>

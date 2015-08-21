@@ -32,15 +32,17 @@
 		$("body").on("click",".swifty_img_holder .swifty_add_image", function(e) {
 			
 			var $this = $(this);
-			imgContainer = $this.prev(".imgContainer");
+			imgContainer = $this.parent().find(".imgContainer");
 			imgIdInput = $this.parent().find('.imgIdInput');
 
 			e.preventDefault();
-			
+
+			/* Opet ne radi :)
 		    if ( frame ) {
 		      frame.open();
 		      return;
 		    }
+		    */
 
 		    // Create a new media frame
 		    frame = wp.media({
@@ -61,13 +63,13 @@
 		      var attachment = frame.state().get('selection').first().toJSON();
 
 		      // Send the attachment URL to our custom image input field.
-		      imgContainer.append( '<img src="'+attachment.url+'" alt="" style="max-width:100%;"/>' );
+		      imgContainer.html( '<img src="'+attachment.url+'" alt="" style="max-width:100%;"/>' );
 
 		      // Send the attachment id to our hidden input
 		      imgIdInput.val( attachment.id );
 
 		      // Remove image button
-		      $this.remove();
+		      $this.text("Edit Image");
 		    });
 
 		});
