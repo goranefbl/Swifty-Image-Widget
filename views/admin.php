@@ -43,6 +43,7 @@ $get_intermediate_image_sizes = get_intermediate_image_sizes();
 	<label for="<?php echo $this->get_field_id( 'size' ); ?>"><?php _e( 'Images Size:' ); ?></label><br/>
 
 	<select class="widefat swifty-img-size" id="<?php echo $this->get_field_id( 'size' ); ?>" name="<?php echo $this->get_field_name('size'); ?>">
+		<option <?php selected($instance['size'],'full'); ?> value="full" ><?php _e('Full', 'swifty-img-widget'); ?></option>
 		<?php foreach ($sizes as $size_name => $size_attr) { ?>
 			<option <?php selected($instance['size'],$size_name); ?> value="<?php echo $size_name; ?>" ><?php echo $size_name . ' ('.$size_attr["width"].' x '.$size_attr["height"].')'; ?></option>	
 		<?php } ?>
