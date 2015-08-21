@@ -14,7 +14,7 @@
 		$("body").on("click", ".swifty_add_img", function(e){
 			e.preventDefault();
 			var widget_holder = $(this).closest('.widget-inside');
-			var clone = widget_holder.find('.swifty_imgs_clone');
+			var clone = widget_holder.find('.swifty_imgs_clone').clone();
 			$('.swifty_img_holder').append(clone.html());
 		});
 
@@ -26,24 +26,21 @@
 
 		var frame,
 			imgContainer,
-			imgIdInput = $(".imgIdInput"); 
+			imgIdInput;
 
 		//Image Frame
-		$(".swifty_img_holder").on("click",".swifty_add_image", function(e) {
-			console.log("aa");
+		$("body").on("click",".swifty_img_holder .swifty_add_image", function(e) {
+			
 			var $this = $(this);
-			imgContainer = $this.parent().find(".imgContainer");
+			imgContainer = $this.prev(".imgContainer");
+			imgIdInput = $this.parent().find('.imgIdInput');
 
 			e.preventDefault();
 			
-			// If the media frame already exists, reopen it.
-			// Daniel: Sve radi ok kada izbacim ovaj dio, znaci debug debug
-			/*
 		    if ( frame ) {
 		      frame.open();
 		      return;
 		    }
-		    */
 
 		    // Create a new media frame
 		    frame = wp.media({
@@ -70,7 +67,6 @@
 		      imgIdInput.val( attachment.id );
 
 		      // Remove image button
-		      console.log($this.text());
 		      $this.remove();
 		    });
 
