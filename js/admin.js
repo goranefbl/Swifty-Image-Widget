@@ -25,7 +25,6 @@
 		});
 
 		var frame,
-			editFrame,
 			imgContainer,
 			imgIdInput,
 			attachment;
