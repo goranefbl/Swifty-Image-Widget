@@ -60,6 +60,8 @@ class Lt_Imgs_Widgets extends WP_Widget {
 		add_action( 'deleted_post', array( $this, 'flush_widget_cache' ) );
 		add_action( 'switch_theme', array( $this, 'flush_widget_cache' ) );
 
+		add_action( 'admin_enqueue_scripts', 'wp_enqueue_media' );
+
 	} // end constructor
 
 
@@ -145,7 +147,7 @@ class Lt_Imgs_Widgets extends WP_Widget {
 		$instance['imgs'] = array();
 
 		if(!empty($new_instance['img_id'])){
-			for($i=0; $i < (count($new_instance['img_id']) ); $i++){
+			for($i=1; $i < (count($new_instance['img_id']) ); $i++){
 				if(!empty($new_instance['img_id'][$i])){
 					$img = array();
 					$img['img'] = esc_attr($new_instance['img_id'][$i]);
