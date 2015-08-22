@@ -37,12 +37,11 @@
 
 			e.preventDefault();
 
-			/* Opet ne radi :)
 		    if ( frame ) {
 		      frame.open();
 		      return;
 		    }
-		    */
+
 
 		    // Create a new media frame
 		    frame = wp.media({
@@ -58,7 +57,7 @@
 
 		    // When an image is selected in the media frame...
 		    frame.on( 'select', function() {
-		      
+		      console.log('tst');
 		      // Get media attachment details from the frame state
 		      var attachment = frame.state().get('selection').first().toJSON();
 
@@ -70,7 +69,24 @@
 
 		      // Remove image button
 		      $this.text("Edit Image");
+		      console.log("but", $this);
+
+
 		    });
+
+		     // When an image is already selected in the media frame...
+		    frame.on( 'open', function() {
+		      	var selection = frame.state().get('selection');
+				
+				//Get current image
+				var attachment = wp.media.attachment(imgIdInput.val());
+				attachment.fetch();
+				
+				//Preselect in media frame
+				selection.add( attachment ? [ attachment ] : [] );
+		    });
+
+			
 
 		});
 	});
