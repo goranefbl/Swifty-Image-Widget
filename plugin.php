@@ -4,8 +4,9 @@
  * Plugin Name:       Swifty Image Widget
  * Plugin URI:        http://www.itsgoran.com
  * Description:       Widget for Images, Testimonials or Advertising Banners.
- * Version:           0.8
+ * Version:           1.0
  * Author:            Goran Jakovljevic
+ * Author URI:        http://www.itsgoran.com/
  * Text Domain:       swifty-img-widget
  * Domain Path:       /lang
  */
@@ -15,8 +16,8 @@ if ( ! defined ( 'ABSPATH' ) ) {
 	exit;
 }
 
-// TODO: change 'Widget_Name' to the name of your plugin
-class Lt_Imgs_Widgets extends WP_Widget {
+
+class Swifty_Img_Widget extends WP_Widget {
 
     protected $widget_slug = 'swifty-img-widget';
 
@@ -33,11 +34,6 @@ class Lt_Imgs_Widgets extends WP_Widget {
 		// load plugin text domain
 		add_action( 'init', array( $this, 'widget_textdomain' ) );
 
-		// Hooks fired when the Widget is activated and deactivated
-		register_activation_hook( __FILE__, array( $this, 'activate' ) );
-		register_deactivation_hook( __FILE__, array( $this, 'deactivate' ) );
-
-		// TODO: update description
 		parent::__construct(
 			$this->get_widget_slug(),
 			__( 'Swifty Image Widget', $this->get_widget_slug() ),
@@ -49,11 +45,9 @@ class Lt_Imgs_Widgets extends WP_Widget {
 
 		// Register admin scripts
 		add_action( 'admin_enqueue_scripts', array( $this, 'register_admin_scripts' ) );
-		// add_action( 'admin_enqueue_scripts', array( $this, 'register_admin_scripts' ) );
 
 		// Register site styles and scripts
 		add_action( 'wp_enqueue_scripts', array( $this, 'register_widget_styles' ) );
-		// add_action( 'wp_enqueue_scripts', array( $this, 'register_widget_scripts' ) );
 
 		// Refreshing the widget's cached output with each new post
 		add_action( 'save_post',    array( $this, 'flush_widget_cache' ) );
@@ -101,14 +95,13 @@ class Lt_Imgs_Widgets extends WP_Widget {
 		if ( isset ( $cache[ $args['widget_id'] ] ) )
 			return print $cache[ $args['widget_id'] ];
 		
-		// go on with your widget logic, put everything into a string and …
-
+		// Off with our widget logic
 
 		extract( $args, EXTR_SKIP );
 		$title = apply_filters( 'widget_title', $instance['title'] );
 
 		$widget_string = $before_widget;
-		// TODO: Here is where you manipulate your widget's values based on their input fields
+		// Widget front end
 		ob_start();
 		include( plugin_dir_path( __FILE__ ) . 'views/widget.php' );
 		$widget_string .= ob_get_clean();
@@ -138,9 +131,10 @@ class Lt_Imgs_Widgets extends WP_Widget {
 
 		$instance = $old_instance;
 
-		// TODO: Here is where you update your widget's old values with the new, incoming values
+		// Updating old values with new ones
 		$instance['title'] = strip_tags( $new_instance['title'] );
 		$instance['size'] = strip_tags( $new_instance['size'] );
+		$instance['align'] = strip_tags( $new_instance['align'] );
 		$instance['img_open_in'] = strip_tags( $new_instance['img_open_in'] );
 		$instance['rel'] = strip_tags( $new_instance['rel'] );
 		$instance['img_width'] = strip_tags( $new_instance['img_width'] );
@@ -153,7 +147,7 @@ class Lt_Imgs_Widgets extends WP_Widget {
 					$img = array();
 					$img['img'] = esc_attr($new_instance['img_id'][$i]);
 					$img['link'] = esc_url($new_instance['img_link'][$i]);
-					$img['caption'] = esc_attr($new_instance['img_caption'][$i]);
+					$img['caption'] = wp_kses_post($new_instance['img_caption'][$i]);
 					$instance['imgs'][] = $img;
 				}
 			}	
@@ -173,6 +167,7 @@ class Lt_Imgs_Widgets extends WP_Widget {
 		$default_settings = array(
 	      'title' 	 => '',
 	      'size' => '',
+	      'align' => '',
 	      'img_open_in' =>'',
 	      'rel' =>'',
 	      'img_width'=>'',
@@ -180,15 +175,16 @@ class Lt_Imgs_Widgets extends WP_Widget {
 	      'imgs'	=> array()
 	    );
 
-		// TODO: Define default values for your variables
+		// Define default values for our variables
 		$instance = wp_parse_args(
 			(array) $instance,
 			$default_settings
 		);
 
-		// TODO: Store the values of the widget in their own variable
+		// Store the values of the widget in their own variable
 		$title = $instance['title'];
 		$size = $instance['size'];
+		$align = $instance['align'];
 		$img_open_in = $instance['img_open_in'];
 		$rel = $instance['rel'];
 		$img_width = $instance['img_width'];
@@ -227,15 +223,6 @@ class Lt_Imgs_Widgets extends WP_Widget {
 
 	} // end register_widget_styles
 
-	/**
-	 * Registers and enqueues widget-specific scripts.
-	 */
-	public function register_widget_scripts() {
-
-		wp_enqueue_script( $this->get_widget_slug().'-script', plugins_url( 'js/widget.js', __FILE__ ), array('jquery') );
-
-	} // end register_widget_scripts
-
 } // end class
 
-add_action( 'widgets_init', create_function( '', 'register_widget("Lt_imgs_Widgets");' ) );
+add_action( 'widgets_init', create_function( '', 'register_widget("Swifty_Img_Widget");' ) );

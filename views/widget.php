@@ -27,14 +27,18 @@ if(!empty($instance['imgs'])) :
 	}
 ?>
 
-<ul class="swifty_imgwidget_ul <?php echo $instance['size'];?>">
+<ul id="swifty_imgwidget_ul" class="al<?php echo $instance['align'];?>">
 	<?php foreach($imgs as $img) :
 		$imgsrc = wp_get_attachment_image_src($img['img'],$img_size);
 		$alt = get_post_meta($img['img'], '_wp_attachment_image_alt', true);
 		if($img['link'] != '') { ?>
-			<li><a <?php echo $img_open_in.' '. $rel; ?> href="<?php echo $img['link'];?>" <?php echo $img_open_in; ?>><img src="<?php echo $imgsrc[0];?>" <?php if($alt != '') { echo 'alt="'.esc_attr($alt).'"'; } ?> <?php echo $sizes; ?>/></a></li>
+			<li><a <?php echo $img_open_in.' '. $rel; ?> href="<?php echo $img['link'];?>" <?php echo $img_open_in; ?>><img src="<?php echo $imgsrc[0];?>" <?php if($alt != '') { echo 'alt="'.esc_attr($alt).'"'; } ?> <?php echo $sizes; ?>/></a>
+			<?php if($img['caption'] != '') { echo '<span class="sbcaption">'.$img["caption"].'</span>';} ?>
+			</li>
 		<?php } else { ?>
-			<li><img src="<?php echo $imgsrc[0];?>" <?php if($alt != '') { echo 'alt="'.esc_attr($alt).'"'; } ?> <?php echo $sizes; ?>/></li>
+			<li><img src="<?php echo $imgsrc[0];?>" <?php if($alt != '') { echo 'alt="'.esc_attr($alt).'"'; } ?> <?php echo $sizes; ?>/>
+				<?php if($img['caption'] != '') { echo '<span class="sbcaption">'.$img["caption"].'</span>';} ?>
+			</li>
 		<?php } ?>
 
 	<?php endforeach; ?>

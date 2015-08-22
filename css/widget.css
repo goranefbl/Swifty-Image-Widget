@@ -1,38 +1,23 @@
-/* This stylesheet is used to style the public view of the widget. */
-ul.swifty_imgwidget_ul li {
-	list-style:none;
-	padding: 0;
-	margin-bottom: 15px;
+ul#swifty_imgwidget_ul li {
+	list-style:none!important;
+	padding: 0!important;
+	display: inline-block;
+	margin: 0 3px 3px 3px;
 }
-ul.swifty_imgwidget_ul li img{
+ul#swifty_imgwidget_ul li img{
 	display: block;
 	margin: auto;
 }
-ul.swifty_imgwidget_ul.small li,ul.swifty_imgwidget_ul.custom li {
-	display: inline-block;
-	margin-right: 5px;
+ul#swifty_imgwidget_ul.alcenter {
+	text-align: center;
 }
-ul.swifty_imgwidget_ul.small li img {
-	width: 125px;
-	height: 125px;
+ul#swifty_imgwidget_ul.alright {
+	text-align: right;
 }
-ul.swifty_imgwidget_ul.square li img {
-	width: 250px;
-	height: 250px;
+ul#swifty_imgwidget_ul.alleft {
+	text-align: left;
 }
-ul.swifty_imgwidget_ul.square2 li img {
-	width: 300px;
-	height: 250px;
-}
-ul.swifty_imgwidget_ul.full li img {
-	width: 468px;
-	height: 60px;
-}
-ul.swifty_imgwidget_ul.leaderboard li img {
-	width: 728px;
-	height: 90px;
-}
-ul.swifty_imgwidget_ul.skyscraper li img {
-	width: 120px;
-	height: 600px;
+ul#swifty_imgwidget_ul .sbcaption {
+	margin:5px 0;
+	display: block;
 }
