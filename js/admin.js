@@ -24,6 +24,13 @@
 			$(this).parent().remove();
 		});
 
+		//Reattach sortable on save
+		$(document).on("widget-updated", function() {
+			$(".swifty_img_holder").sortable();
+		})
+
+		$(".swifty_img_holder").sortable();
+
 		var frame,
 			imgContainer,
 			imgIdInput;
@@ -81,5 +88,6 @@
 			frame.open();
 			
 		});
+
 	});
 }(jQuery));
