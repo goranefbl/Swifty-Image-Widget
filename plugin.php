@@ -142,6 +142,7 @@ class Lt_Imgs_Widgets extends WP_Widget {
 		$instance['title'] = strip_tags( $new_instance['title'] );
 		$instance['size'] = strip_tags( $new_instance['size'] );
 		$instance['img_open_in'] = strip_tags( $new_instance['img_open_in'] );
+		$instance['rel'] = strip_tags( $new_instance['rel'] );
 		$instance['img_width'] = strip_tags( $new_instance['img_width'] );
 		$instance['img_height'] = strip_tags( $new_instance['img_height'] );
 		$instance['imgs'] = array();
@@ -173,6 +174,7 @@ class Lt_Imgs_Widgets extends WP_Widget {
 	      'title' 	 => '',
 	      'size' => '',
 	      'img_open_in' =>'',
+	      'rel' =>'',
 	      'img_width'=>'',
 	      'img_height' 	 => '',
 	      'imgs'	=> array()
@@ -188,6 +190,7 @@ class Lt_Imgs_Widgets extends WP_Widget {
 		$title = $instance['title'];
 		$size = $instance['size'];
 		$img_open_in = $instance['img_open_in'];
+		$rel = $instance['rel'];
 		$img_width = $instance['img_width'];
 		$img_height = $instance['img_height'];
 		$imgs = $instance['imgs'];

@@ -2,21 +2,41 @@
 if ( ! empty( $title ) )
 	echo $before_title . $title . $after_title;
 
-if(!empty($instance['ads'])) :
+if(!empty($instance['imgs'])) :
 
-	$ads = $instance['ads'];
-	$size = $instance['size'];
+	$imgs = $instance['imgs'];
+
+	if($instance['img_open_in'] == 'new' ) {
+		$img_open_in = 'target="_blank"';
+	} else {
+		$img_open_in = '';
+	}
+
+	if($instance['rel'] == 'nofollow' ) {
+		$rel = 'rel="nofollow"';
+	} else {
+		$rel = '';
+	}
 
 	if($instance['size'] == 'custom'){
-		$ad_size = 'style="width:'.$instance['ad_width'].'px; height:'.$instance['ad_height'].'px;"';
+		$img_size = 'full';
+		$sizes = 'style="width:'.$instance['img_width'].'px; height:'.$instance['img_height'].'px;"';
 	} else {
-		$ad_size = '';
+		$img_size = $instance['size'];
+		$sizes = '';
 	}
 ?>
 
-<ul class="goran_adswidget_ul <?php echo $instance['size'];?>">
-	<?php foreach($ads as $ad) : ?>
-	<li><a rel="nofollow" href="<?php echo $ad['link'];?>" target="_blank"><img src="<?php echo $ad['img'];?>" alt="<?php echo esc_attr(basename($ad['img'])); ?>" <?php echo $ad_size; ?>/></a></li>
+<ul class="swifty_imgwidget_ul <?php echo $instance['size'];?>">
+	<?php foreach($imgs as $img) :
+		$imgsrc = wp_get_attachment_image_src($img['img'],$img_size);
+		$alt = get_post_meta($img['img'], '_wp_attachment_image_alt', true);
+		if($img['link'] != '') { ?>
+			<li><a <?php echo $img_open_in.' '. $rel; ?> href="<?php echo $img['link'];?>" <?php echo $img_open_in; ?>><img src="<?php echo $imgsrc[0];?>" <?php if($alt != '') { echo 'alt="'.esc_attr($alt).'"'; } ?> <?php echo $sizes; ?>/></a></li>
+		<?php } else { ?>
+			<li><img src="<?php echo $imgsrc[0];?>" <?php if($alt != '') { echo 'alt="'.esc_attr($alt).'"'; } ?> <?php echo $sizes; ?>/></li>
+		<?php } ?>
+
 	<?php endforeach; ?>
 </ul>
 

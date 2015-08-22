@@ -61,10 +61,17 @@ $get_intermediate_image_sizes = get_intermediate_image_sizes();
 	<input id="<?php echo $this->get_field_id( 'img_height' ); ?>" type="text" name="<?php echo $this->get_field_name( 'img_height' ); ?>" value="<?php echo absint($instance['img_height']); ?>" class="small-text" />px
 </p>
 <p>
-	<label for="<?php echo $this->get_field_id( 'size' ); ?>"><?php _e( 'Open Link in:' ); ?></label><br/>
-	<select class="widefat swifty-img-size" id="<?php echo $this->get_field_id( 'size' ); ?>" name="<?php echo $this->get_field_name('size'); ?>">
-		<option <?php selected($instance['size'],'new'); ?> value="new"><?php _e('New Window', 'swifty-img-widget'); ?></option>
-		<option <?php selected($instance['size'],'custom'); ?> value="same" ><?php _e('Same Window', 'swifty-img-widget'); ?></option>
+	<label data-attr="<?php echo $instance['img_open_in']; ?>" for="<?php echo $this->get_field_id( 'img_open_in' ); ?>"><?php _e( 'Open Link in:' ); ?></label><br/>
+	<select class="widefat" id="<?php echo $this->get_field_id( 'img_open_in' ); ?>" name="<?php echo $this->get_field_name('img_open_in'); ?>">
+		<option <?php selected($instance['img_open_in'],'new'); ?> value="new" ><?php _e('New Window', 'swifty-img-widget'); ?></option>
+		<option <?php selected($instance['img_open_in'],'same'); ?> value="same" ><?php _e('Same Window', 'swifty-img-widget'); ?></option>
+	</select>
+</p>
+<p>
+	<label data-attr="<?php echo $instance['rel']; ?>" for="<?php echo $this->get_field_id( 'rel' ); ?>"><?php _e( 'Rel follow for links: (Search Engines)' ); ?></label><br/>
+	<select class="widefat" id="<?php echo $this->get_field_id( 'rel' ); ?>" name="<?php echo $this->get_field_name('rel'); ?>">
+		<option <?php selected($instance['rel'],'nofollow'); ?> value="nofollow" ><?php _e('No follow (Bots wont follow)', 'swifty-img-widget'); ?></option>
+		<option <?php selected($instance['rel'],'follow'); ?> value="follow" ><?php _e('Follow (Bots will follow)', 'swifty-img-widget'); ?></option>
 	</select>
 </p>
 <hr style="margin:25px 0;">
