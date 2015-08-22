@@ -24,6 +24,13 @@
 			$(this).parent().remove();
 		});
 
+		//Reattach sortable on save
+		$(document).on("widget-updated", function() {
+			$(".swifty_img_holder").sortable();
+		})
+
+		$(".swifty_img_holder").sortable();
+
 		var frame,
 			imgContainer,
 			imgIdInput;
@@ -37,13 +44,6 @@
 
 			e.preventDefault();
 
-			/* Opet ne radi :)
-		    if ( frame ) {
-		      frame.open();
-		      return;
-		    }
-		    */
-
 		    // Create a new media frame
 		    frame = wp.media({
 		      title: 'Select Image',
@@ -54,11 +54,11 @@
 		      multiple: false  // Set to true to allow multiple files to be selected
 		    });
 
-		    frame.open();
+		    
 
 		    // When an image is selected in the media frame...
 		    frame.on( 'select', function() {
-		      
+
 		      // Get media attachment details from the frame state
 		      var attachment = frame.state().get('selection').first().toJSON();
 
@@ -70,8 +70,24 @@
 
 		      // Remove image button
 		      $this.text("Edit Image");
+
 		    });
 
+		     // When an image is already selected in the media frame...
+		    frame.on( 'open', function() {
+		      	var selection = frame.state().get('selection');
+				
+				//Get current image
+				var attachment = wp.media.attachment(imgIdInput.val());
+				attachment.fetch();
+				
+				//Preselect in media frame
+				selection.add( attachment ? [ attachment ] : [] );
+		    });
+
+			frame.open();
+			
 		});
+
 	});
 }(jQuery));
