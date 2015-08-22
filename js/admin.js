@@ -47,10 +47,11 @@
 		      multiple: false  // Set to true to allow multiple files to be selected
 		    });
 
-		    frame.open();
+		    
 
 		    // When an image is selected in the media frame...
 		    frame.on( 'select', function() {
+
 		      // Get media attachment details from the frame state
 		      var attachment = frame.state().get('selection').first().toJSON();
 
@@ -77,6 +78,8 @@
 				selection.add( attachment ? [ attachment ] : [] );
 		    });
 
+			frame.open();
+			
 		});
 	});
 }(jQuery));
