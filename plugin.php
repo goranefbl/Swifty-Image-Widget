@@ -3,7 +3,7 @@
  *
  * Plugin Name:       Swifty Image Widget
  * Plugin URI:        http://www.itsgoran.com
- * Description:       Widget for Images, Testimonials or Advertising Banners.
+ * Description:       Simple but powerful Widget for Images, Testimonials and Advertising Banners.
  * Version:           1.0
  * Author:            Goran Jakovljevic
  * Author URI:        http://www.itsgoran.com/

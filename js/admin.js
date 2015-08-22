@@ -24,12 +24,18 @@
 			$(this).parent().remove();
 		});
 
-		//Reattach sortable on save
-		$(document).on("widget-updated", function() {
-			$(".swifty_img_holder").sortable();
-		})
-
-		$(".swifty_img_holder").sortable();
+		//Reattach sortable on save and add
+		jQuery(document).on('widget-updated widget-added', function(e, widget){
+			$(".swifty_img_holder").sortable({
+				cursor:"move",
+				axis:"y"
+			});
+		});
+		// Envoke Sortable
+		$(".swifty_img_holder").sortable({
+			cursor:"move",
+			axis:"y"
+		});
 
 		var frame,
 			imgContainer,
@@ -48,10 +54,10 @@
 		    frame = wp.media({
 		      title: 'Select Image',
 		      button: {
-		        text: 'Use This One'
+		        text: 'Use This Image'
 		      },
 		      library : { type : 'image' },
-		      multiple: false  // Set to true to allow multiple files to be selected
+		      multiple: false
 		    });
 
 		    
