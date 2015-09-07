@@ -87,7 +87,7 @@ $get_intermediate_image_sizes = get_intermediate_image_sizes();
 	<ul class="swifty_img_holder">
 		<?php foreach ($imgs as $img) { ?>
 		<li style="margin-bottom:0;">
-			<div class="imgContainer" style="text-align:center;border: 1px dashed #ddd;padding: 15px;"><?php echo wp_get_attachment_image( $img['img'], 'medium' ); ?></div>
+			<div class="imgContainer" style="text-align:center;border: 1px dashed #ddd;padding: 15px;"><?php echo wp_get_attachment_image( $img['img'], 'thumbnail' ); ?></div>
 			<p>
 				<label><?php _e('Image Link(Optional)', 'swifty-img-widget'); ?>:</label>
 				<input type="text" name="<?php echo $this->get_field_name( 'img_link' ); ?>[]" value="<?php echo $img['link']; ?>" class="widefat" />
